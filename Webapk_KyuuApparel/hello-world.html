@@ -1,0 +1,268 @@
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kyuu Apparel</title>
+  <style>
+    /* Style utama */
+    body { background-color: #ffffff; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+    header { background-color: #ffffff; color: white; padding: 20px; text-align: right; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 20px; }
+    .produk-container { display: flex; flex-wrap: nowrap; justify-content: center; overflow-x: auto; gap: 16px; padding: 16px 0; }
+    .produk { flex: 0 0 auto; width: 220px; border: 1px solid #ccc; border-radius: 8px; padding: 10px; text-align: center; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+    .produk:hover { transform: translateY(-5px); }
+    .produk img { max-width: 100%; height: auto; border-radius: 4px;  }
+    footer { background-color:darkcyan; color: white; text-align: center; padding: 10px; }
+    form input, form select, form textarea, form button { display: block; width: 100%; margin-bottom: 10px; padding: 8px; font-size: 16px; }
+    .ukuran-group { margin-bottom: 10px; }
+    .ukuran-group label { display: block; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigasi -->
+  <header>
+    <h1 style="color: darkcyan;text-align: left;" > Kyuu Apparel</h1>
+    <nav>
+      <a href="#beranda" style="color: darkcyan;">Beranda</a>
+      <a href="#aboutme" style="color: darkcyan;">Tentang</a>
+      <a href="#produk"style="color: darkcyan;">Produk</a>
+      <a href="#harga"style="color: darkcyan;">Harga</a>
+      <a href="#pemesanan"style="color: darkcyan;">Pemesanan</a>
+      <a href="#kontak"style="color: darkcyan;">Kontak</a>
+    </nav>
+  </header>
+
+  <!-- Beranda -->
+  <section id="beranda" style="text-align: center; background-color: rgb(0, 139, 139);">
+    <h1 style="color: white;">Selamat Datang di Kyuu Apparel</h1>
+    <p style="color: white;"><strong>Tingkatkan performa dengan gaya!</strong><br />Kyuu Apparel menghadirkan jersey custom premium untuk semua cabang olahraga.</p>
+  </section>
+
+  <!-- Tentang Kami -->
+  <section id="aboutme" style="color: darkcyan; background-image: url(); background-image: url('baju/gambar1.jpg');background-size:cover;">
+    <h2 style ="text-align:center;">Tentang Kami</h2>
+    <p style="text-align: justify;">Kyuu Apparel adalah brand lokal dari Blitar, Jawa Timur, yang menghadirkan jasa pembuatan jersey custom berbahan dryfit premium untuk berbagai kebutuhan tim dan komunitas. Kami percaya bahwa jersey bukan hanya pakaian pertandingan, melainkan identitas, semangat, dan kebanggaan yang layak ditampilkan dengan desain yang autentik dan kualitas terbaik.
+Dengan kombinasi desain kreatif, pelayanan profesional, serta bahan yang nyaman dan tahan lama, Kyuu Apparel hadir untuk kamu yang ingin tampil beda — di lapangan maupun di luar arena. Mulai dari tim futsal, basket, voli, hingga e-sports dan event sekolah, kami siap jadi partner terbaikmu dalam menciptakan jersey yang merepresentasikan siapa kamu dan timmu.
+</p>
+    <ul>
+      <li>Jersey Futsal & Sepak Bola</li><li>Jersey Basket</li><li>Jersey Voli & Badminton</li>
+      <li>Jersey E-Sports / Gaming Team</li><li>Jersey Baseball</li>
+      <li>Jersey Komunitas, Sekolah, & Event</li><li>Custom nama, nomor, warna, logo</li><li>Desain saja tanpa cetak</li>
+    </ul>
+  </section>
+
+  <!-- Produk -->
+  <section id="produk" style="text-align: center;background-color: darkcyan;color:white;">
+    <h2>Pilih Kategori Produk</h2>
+    <p ><strong>Pilih Olahragamu – Pilih Gayamu.</strong></p>
+    <select id="kategoriSelect" onchange="tampilkanKategori()">
+      <option value="">-- Contoh Jersey --</option>
+      <option value="futsal">Futsal</option>
+      <option value="basket">Basket</option>
+      <option value="sepakbola">Sepak Bola</option>
+      <option value="bulutangkis">bulu tangkis</option>
+      <option value="gaming">Gaming</option>
+      <option value="custom">custom</option>
+    </select>
+    <div id="produkList" class="produk-container"></div>
+  </section>
+
+  <!-- Harga -->
+  <section id="harga" style="text-align: center; color: darkcyan;">
+     <h2>Daftar Harga Jersey Kyuu Apparel</h2>
+<label for="sortHarga">Urutkan Harga:</label>
+<select id="sortHarga" onchange="urutkanHarga()">
+  <option value="">-- Pilih Urutan --</option>
+  <option value="asc">Harga Termurah</option>
+  <option value="desc">Harga Termahal</option>
+</select>
+
+
+    <div style="overflow-x:auto;">
+      <table border ="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width:100%; color: rgb(0, 139, 139);">
+        <thead >
+          <br/><tr style="color: rgb(255, 255, 255); background-color: rgb(16, 193, 193);"><th>Jenis Jersey</th><th>Jumlah</th><th>Harga per Pcs</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody id="tbodyHarga">
+
+          <tr><td>Jersey Polos Dryfit</td><td>1 pcs</td><td>Rp85.000</td><td>Tanpa nama/nomor</td></tr>
+          <tr><td>Jersey Full Printing</td><td>1 pcs</td><td>Rp120.000</td><td>Custom lengkap + free desain</td></tr>
+          <tr><td>Set Full</td><td>1 pcs</td><td>Rp145.000</td><td>Custom lengkap + free desain</td></tr>
+          <tr><td>Desain Saja</td><td>-</td><td>Rp30.000</td><td>Bebas revisi</td></tr>
+        </tbody>
+      </table>
+      <p>Harga dapat berubah tergantung desain dan jumlah pesanan. Belum termasuk ongkir.<h2 style="background-color: rgba(0, 139, 139, 0.429);"> DISKON 10 % PEMBELIAN > 20 ITEM </h2></h2></p><br/>
+      <h2>Detail Ukuran Baju </h2>
+        <table border ="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width:100%; color: rgb(0, 139, 139);">
+        <thead >
+          <br/><tr style="color: rgb(255, 255, 255); background-color: rgb(16, 193, 193);"><th>Ukuran</th><th>Lebar Dada (cm)</th><th>Panjang Baju (cm)</th></tr></thead>
+        <tbody>
+           <tr><td>S</td><td>48</td><td>68</td></tr>
+        <tr><td>M</td><td>50</td><td>70</td></tr>
+        <tr><td>L</td><td>52</td><td>72</td></tr>
+        <tr><td>XL</td><td>54</td><td>74</td></tr>
+        <tr><td>XXL</td><td>56</td><td>76</td></tr>
+           
+        </tbody>
+      </table>
+      
+    </div>
+  
+  </section>
+
+
+  <!-- Formulir Pemesanan --> 
+  <br/><section id="pemesanan" style="text-align: center; background-color: darkcyan; color: white;">
+    <h2>Formulir Pemesanan</h2>
+    <form id="formPesan">
+      <input type="text" id="nama" placeholder="Nama Lengkap" required>
+      <select id="tipeProduk" required style="color: darkcyan;">
+        <option value="">-- Jenis Jersey --</option>
+        <option value="jersey polos">Jersey Polos Dryfit</option>
+        <option value="jersey saja">Jersey Full Printing</option>
+        <option value="fullset">Full Set</option>
+        <option value="desain">Desain Saja</option>
+      </select>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="wa" placeholder="Nomor WhatsApp" required>
+      <select id="jenis" required  style="color: darkcyan;">
+        <option value="">-- Pilih Jenis Olahraga --</option>
+        <option>Futsal</option><option>Basket</option><option>Sepak Bola</option>
+        <option>bulutangkis</option><option>Gaming</option><option>Baseball</option>
+        <option>Custum Baju (Konsultasi WA)</option>
+      </select>
+      <!-- Input ukuran -->
+      <div class="ukuran-group">
+        <label>Jumlah Ukuran:</label>
+        <input type="number" id="ukuranS" placeholder="Ukuran S" min="0" value="0">
+        <input type="number" id="ukuranM" placeholder="Ukuran M" min="0" value="0">
+        <input type="number" id="ukuranL" placeholder="Ukuran L" min="0" value="0">
+        <input type="number" id="ukuranXL" placeholder="Ukuran XL" min="0" value="0">
+        <input type="number" id="ukuranXXL" placeholder="Ukuran XXL" min="0" value="0">
+      </div>
+      <textarea id="catatan" placeholder="Catatan Desain (opsional)"></textarea>
+      <p id="hargaPreview">Total Estimasi: Rp0</p>
+      <button type="submit"  style="color: darkcyan;">Kirim Pesanan</button>
+    </form>
+  </section>
+
+  <!-- Kontak -->
+  <section id="kontak"  style="color: darkcyan;" >
+    <h2>Kontak</h2>
+    <p><a href="https://wa.me/6285921686784" target="_blank">WhatsApp</a></p>
+    <p><a href="https://www.instagram.com/kyuu.apparel?igsh=cGRxNGJvbW51MHcw" target="_blank">Instagram</a></p>
+    <p>Email: kyuuapparel@gmail.com</p>
+    <p>Jl. Kerantil No.12, Sukorejo, Blitar, Jawa Timur</p>
+  </section>
+
+  <footer><p>&copy; 2025 Kyuu Apparel. All rights reserved.</p></footer>
+
+  <script>
+    // Data produk per kategori
+    const semuaProduk = {
+      futsal: [{nama:"Jersey Futsal 1",gambar:"baju/futsal1.jpg"},{nama:"Jersey Futsal 2",gambar:"baju/futsal2.jpg"},{nama:"Jersey Futsal 3",gambar:"baju/futsal3.jpg"}],
+      basket: [{nama:"Jersey Basket 1",gambar:"baju/basket1.jpg"}, {nama:"Jersey Basket 2",gambar:"baju/basket2.jpg"},{nama:"Jersey Basket 3",gambar:"baju/basket3.jpg"}],
+      sepakbola: [{nama:"Jersey Bola 1",gambar:"baju/bola1.jpg"}, {nama:"Jersey bola 2",gambar:"baju/bola2.jpg"},{nama:"Jersey bola 3",gambar:"baju/bola3.jpg"}],
+      bulutangkis:   [{nama:" jersey bulutangkis 1",gambar:"baju/bulutangkis.jpg"}, {nama:"jersey bulu tangkis 2 ",gambar:"baju/bulutangkis 2.jpg"},{nama:"jersey bulu tangis 3",gambar:"baju/bulutangkis3.jpg"}],
+      gaming: [{nama:" jersey gaming 1",gambar:"baju/gaming1.jpg"}, {nama:"jersey gaming 2",gambar:"baju/gaming2.jpg"},{nama:"jersey gaming 3",gambar:"baju/gaming3.jpg"}],
+      custom: [{nama:" jersey custom 1",gambar:"baju/custom1.jpg"}, {nama:"jersey custom  2",gambar:"baju/custom2.jpg"},{nama:"jersey custom 3",gambar:"baju/custom3.jpg"}],
+    }
+    // Menampilkan produk sesuai kategori
+     function tampilkanKategori() {
+  const kategori = document.getElementById("kategoriSelect").value;
+  const produkList = document.getElementById("produkList");
+  produkList.innerHTML = "";
+
+  if (semuaProduk[kategori]) {
+    semuaProduk[kategori].forEach(produk => {
+      const item = document.createElement("div");
+      item.className = "produk";
+      item.innerHTML = `
+        <img src="${produk.gambar}" alt="${produk.nama}" />
+        <h3>${produk.nama}</h3>
+      `;
+      produkList.appendChild(item);
+    });
+  }
+}
+
+
+    // Hitung total harga berdasarkan input ukuran & tipe produk
+    function hitungTotal() {
+      const tipeProduk = document.getElementById("tipeProduk").value;
+      const ukuranInputs = ["ukuranS","ukuranM","ukuranL","ukuranXL","ukuranXXL"];
+      const jumlah = ukuranInputs.reduce((t,id)=> t+(+document.getElementById(id).value||0), 0);
+      let hargaNormal = 0, hargaPerItem = 0;
+
+       if (tipeProduk === "jersey polos") {
+  hargaNormal = hargaPerItem = 85000;
+} else if (tipeProduk === "jersey saja") {
+  hargaNormal = hargaPerItem = 120000;
+} else if (tipeProduk === "fullset") {
+  hargaNormal = hargaPerItem = 145000;
+} else if (tipeProduk === "desain") {
+  hargaNormal = hargaPerItem = 30000;
+} else {
+  document.getElementById("hargaPreview").innerText = "Pilih jenis produk terlebih dahulu.";
+  return;
+}
+
+// Terapkan diskon 10% jika jumlah lebih dari 20
+if (jumlah > 20) {
+  hargaPerItem *= 0.9; // Diskon 10%
+}
+
+
+      const total = jumlah * hargaPerItem;
+      let teksDiskon = hargaPerItem < hargaNormal ? ` (Sebelum diskon: Rp${hargaNormal.toLocaleString("id-ID")}/pcs)` : "";
+      document.getElementById("hargaPreview").innerText = `Total Estimasi: ${jumlah} pcs x Rp${hargaPerItem.toLocaleString("id-ID")} = Rp${total.toLocaleString("id-ID")}${teksDiskon}`;
+    }
+
+    // Event listener untuk form pemesanan
+    document.getElementById("formPesan").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const wa = document.getElementById("wa").value.trim();
+      const tipeProduk = document.getElementById("tipeProduk").value;
+      const jenis = document.getElementById("jenis").value;
+      const catatan = document.getElementById("catatan").value.trim() || "-";
+
+      const ukuranInputs = ["ukuranS","ukuranM","ukuranL","ukuranXL","ukuranXXL"];
+      const ukuran = ukuranInputs.map(id => `${id.toUpperCase()}: ${document.getElementById(id).value}`).join("%0A");
+      const jumlah = ukuranInputs.reduce((t,id)=> t+(+document.getElementById(id).value||0), 0);
+      if (jumlah === 0) return alert("Jumlah ukuran tidak boleh nol.");
+      const harga = document.getElementById("hargaPreview").innerText;
+
+      const pesan = `Halo Kyuu Apparel,%0A%0ASaya ingin memesan:%0A- Nama: ${nama}%0A- Email: ${email}%0A- WhatsApp: ${wa}%0A- Produk: ${tipeProduk}%0A- Olahraga: ${jenis}%0A- Jumlah:%0A${ukuran}%0A- Catatan: ${catatan}%0A${harga}`;
+      window.open(`https://wa.me/6285921686784?text=${pesan}`, "_blank");
+    });
+
+    // Pasang listener awal
+    document.addEventListener("DOMContentLoaded", function() {
+      ["ukuranS","ukuranM","ukuranL","ukuranXL","ukuranXXL","tipeProduk"].forEach(id => {
+        document.getElementById(id).addEventListener("input", hitungTotal);
+      });
+      hitungTotal();
+    });
+    function urutkanHarga() {
+  const order = document.getElementById("sortHarga").value;
+  const tbody = document.getElementById("tbodyHarga");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+
+  rows.sort((a, b) => {
+    const hargaA = parseInt(a.cells[2].textContent.replace(/\D/g, ''));
+    const hargaB = parseInt(b.cells[2].textContent.replace(/\D/g, ''));
+    return order === "asc" ? hargaA - hargaB : hargaB - hargaA;
+  });
+
+  tbody.innerHTML = ""; // kosongkan isi tabel
+  rows.forEach(row => tbody.appendChild(row)); // tampilkan hasil sorting
+}
+
+  </script>
+</body>
+</html>
